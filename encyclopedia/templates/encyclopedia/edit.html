@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit - {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h1>Edit Page</h1>
+    <div class="line"></div>
+    <br>
+    <form class="form-container" method="post">
+        {% csrf_token %}
+        <label for="{{ form.content.id_for_label }}">Content</label>
+        {{ form.content }}
+
+        <div style="margin-top: 16px;"></div>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>  
+    <br>
+    <a href="{% url 'entry' title=title %}">Back to {{ title }}</a>
+{% endblock %}

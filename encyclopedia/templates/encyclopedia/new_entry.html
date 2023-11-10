@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Entry
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Entry</h1>
+    <div class="line"></div>
+    <br>
+    <form class="form-container" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title</label>
+            <input type="text" class="form-control" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" value="{{ form.title.value|default:'' }}">
+        </div>
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}">Content</label>
+            <textarea class="form-control" id="{{ form.content.id_for_label }}" name="{{ form.content.name }}" rows="10">{{ form.content.value|default:'' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
